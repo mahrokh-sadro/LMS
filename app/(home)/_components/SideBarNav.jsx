@@ -13,9 +13,12 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const SideBarNav = () => {
   const drawerWidth = 200;
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const navItems = [
     { text: "Browse", href: "/browse" },
     { text: "Dashboard", href: "/dashboard" },
@@ -30,6 +33,7 @@ const SideBarNav = () => {
         anchor="left"
         sx={{
           width: drawerWidth,
+          display: { xs: "none", md: "block" },
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: {
             width: drawerWidth,
@@ -50,8 +54,8 @@ const SideBarNav = () => {
           <Image
             src="/logo.jpg"
             alt="Logo"
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             style={{
               borderRadius: "50%",
               objectFit: "cover",
@@ -75,7 +79,17 @@ const SideBarNav = () => {
           {navItems.map((item, index) => (
             <ListItem key={item.text} disablePadding>
               <Link href={item.href} passHref legacyBehavior>
-                <ListItemButton component="a">
+                <ListItemButton
+                  component="a"
+                  className="cursor-pointer"
+                  sx={{
+                    backgroundColor:
+                      activeIndex === index ? "#f0f0f0" : "transparent",
+                    "&:hover": {
+                      backgroundColor: "#e0e0e0",
+                    },
+                  }}
+                >
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                   </ListItemIcon>
