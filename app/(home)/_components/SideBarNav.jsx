@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const SideBarNav = () => {
-  const drawerWidth = 200;
+  const drawerWidth = 250;
   const [activeIndex, setActiveIndex] = useState(0);
 
   const navItems = [
@@ -62,27 +62,16 @@ const SideBarNav = () => {
             }}
           />
         </Box>
-        {/* <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider /> */}
+
         <List>
           {navItems.map((item, index) => (
             <ListItem key={item.text} disablePadding>
-              <Link href={item.href} passHref legacyBehavior>
+              <Link href={item.href}>
                 <ListItemButton
-                  component="a"
                   className="cursor-pointer"
                   sx={{
+                    // display: "block",
+                    // width: "100%",
                     backgroundColor:
                       activeIndex === index ? "#f0f0f0" : "transparent",
                     "&:hover": {
