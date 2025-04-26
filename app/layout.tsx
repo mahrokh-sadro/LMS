@@ -39,8 +39,8 @@ export default async function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <header
-            className="flex justify-end items-center p-4 gap-4 h-16"
-            style={{ backgroundColor: "#FF4162" }}
+            className="flex justify-end items-center p-4 gap-4 h-16 "
+            style={{ backgroundColor: "#D3D3D3" }}
           >
             <SignedOut>
               <SignInButton />
