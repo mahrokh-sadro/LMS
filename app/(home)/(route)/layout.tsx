@@ -1,4 +1,5 @@
 // app/(home)/layout.tsx
+// "use cleint";
 import SideBarNav from "./../_components/SideBarNav";
 import Header from "./../_components/Header";
 import SearchBar from "../_components/SearchBar";
@@ -15,16 +16,13 @@ export default function HomeLayout({
         <div
           style={{
             flexGrow: 1,
-            // marginLeft: 250,
             display: "flex",
             flexDirection: "column",
           }}
         >
-          {/* <Header /> */}
-
           <div style={{ flexGrow: 1, padding: "20px" }}>{children}</div>
         </div>
       </div>
     </>
-  ); // Renders whatever is inside (route)
+  );
 }
