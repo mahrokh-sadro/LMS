@@ -40,6 +40,18 @@ export const getCourseById = async (id) => {
         totalChapters
         youtubeUrl
       }
+
+       userEnrollCourses(where: {courseId: "` +
+    id +
+    `",
+    userEmail: "` +
+    userEmail +
+    `"}) {
+    courseId
+    userEmail
+    completedChapter
+
+  }
     }
   `;
 

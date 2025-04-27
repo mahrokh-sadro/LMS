@@ -13,7 +13,7 @@ export default async function ListingPage({
 }) {
   const paramsData = await params;
   const course = await getCourseById(paramsData.id);
-  // console.log(paramsData.id);
+  console.log(paramsData.id);
   // console.log("course", course);
 
   // if (!listing) {
