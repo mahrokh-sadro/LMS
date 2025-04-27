@@ -11,6 +11,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./(home)/_components/Header";
 import { AppBar, Toolbar, Typography, TextField } from "@mui/material";
+import SearchBar from "./(home)/_components/SearchBar";
+import DynamicSearchBarWrapper from "./(home)/_components/DynamicSearchBarWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,16 +49,7 @@ export default async function RootLayout({
               <SignUpButton />
             </SignedOut>
             <SignedIn>
-              <TextField
-                variant="outlined"
-                size="small"
-                placeholder="Search..."
-                sx={{
-                  backgroundColor: "white",
-                  borderRadius: 1,
-                  width: "200px",
-                }}
-              />
+              <DynamicSearchBarWrapper />
               <UserButton />
             </SignedIn>
           </header>
