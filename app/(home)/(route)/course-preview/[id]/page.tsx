@@ -1,6 +1,7 @@
 // app/listings/[listingId]/page.tsx
 import { getCourseById } from "../../../../_services/index";
 import CourseClient from "./CourseClient";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 interface IParams {
   id: string;
@@ -11,10 +12,16 @@ export default async function ListingPage({
 }: {
   params: Promise<IParams>;
 }) {
+  // const { userId } = auth();
+  const user = await currentUser();
+  // console.log(user?.emailAddresses[0].emailAddress);
   const paramsData = await params;
-  const course = await getCourseById(paramsData.id);
-  console.log(paramsData.id);
-  // console.log("course", course);
+  const course = await getCourseById(
+    paramsData.id,
+    user?.emailAddresses[0].emailAddress
+  );
+  // console.log(paramsData.id);
+  console.log("course", course);
 
   // if (!listing) {
   //   return <div className="text-center text-xl mt-10">Listing not found</div>;
@@ -22,7 +29,7 @@ export default async function ListingPage({
 
   return (
     <>
-      <CourseClient course={course} />
+      <CourseClient course={course.course} enrollment={course.enrollment} />
     </>
   );
 }

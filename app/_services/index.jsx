@@ -23,13 +23,10 @@ export const getCourseList = async () => {
   return result.courseLists;
 };
 
-export const getCourseById = async (id) => {
-  const query =
-    gql`
-    query course {
-      courseLists(where: { id: "` +
-    id +
-    `" }) {
+export const getCourseById = async (id, userEmail) => {
+  const query = gql`
+    query GetCourseAndEnrollment {
+      courseLists(where: { id: "${id}" }) {
         id
         name
         banner {
@@ -40,21 +37,38 @@ export const getCourseById = async (id) => {
         totalChapters
         youtubeUrl
       }
-
-       userEnrollCourses(where: {courseId: "` +
-    id +
-    `",
-    userEmail: "` +
-    userEmail +
-    `"}) {
-    courseId
-    userEmail
-    completedChapter
-
-  }
+      userEnrollCourses(where: { courseId: "${id}", userEmail: "${userEmail}" }) {
+        courseId
+        userEmail
+        completedChapter
+      }
     }
   `;
 
   const result = await request(MASTER_URL, query);
-  return result.courseLists[0];
+
+  return {
+    course: result.courseLists[0],
+    enrollment: result.userEnrollCourses[0] || null, // if not enrolled, null
+  };
+};
+
+export const EnrollCourse = async (id, userEmail) => {
+  const mutationQuery =
+    gql`
+    mutation MyMutation {
+      createUserEnrollCourse(
+        data: { userEmail: "` +
+    userEmail +
+    `", courseId: "` +
+    id +
+    `" }
+      ) {
+        id
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, mutationQuery);
+  return result;
 };

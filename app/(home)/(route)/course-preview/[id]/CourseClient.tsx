@@ -7,10 +7,12 @@ import EnrollmentSection from "./EnrollmentSection";
 
 interface CourseClientProps {
   course: any;
+  enrollment: any;
 }
 
-const CourseClient: React.FC<CourseClientProps> = ({ course }) => {
+const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
   const [isEnrolled, setIsEnrolled] = useState(false);
+  console.log("course", course.name);
 
   const handleEnroll = () => {
     console.log("User enrolled into course:", course.id);
@@ -22,7 +24,6 @@ const CourseClient: React.FC<CourseClientProps> = ({ course }) => {
     const videoId = urlObj.searchParams.get("v");
     return `https://www.youtube.com/embed/${videoId}`;
   };
-
   return (
     <div className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
