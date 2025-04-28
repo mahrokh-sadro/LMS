@@ -12,7 +12,6 @@ interface CourseClientProps {
 
 const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
   const [isEnrolled, setIsEnrolled] = useState(false);
-  console.log("course", course.name);
 
   const handleEnroll = () => {
     console.log("User enrolled into course:", course.id);
@@ -27,7 +26,6 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
   return (
     <div className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* LEFT side */}
         <div className="md:col-span-2">
           <h1 className="text-2xl font-bold mb-4">{course?.name}</h1>
 
@@ -58,10 +56,9 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
           )}
         </div>
 
-        {/* RIGHT side (Sticky) */}
         <div className="mt-6 md:mt-0 sticky top-28 self-start">
           <OptionSection />
-          <EnrollmentSection course={course} />
+          <EnrollmentSection course={course} enrollment={enrollment} />
         </div>
       </div>
     </div>

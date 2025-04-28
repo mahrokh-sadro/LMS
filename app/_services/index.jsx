@@ -72,3 +72,16 @@ export const EnrollCourse = async (id, userEmail) => {
   const result = await request(MASTER_URL, mutationQuery);
   return result;
 };
+
+export const PublishCourse = async (id) => {
+  const mutationQuery = gql`
+  mutation MyMutation {
+    publishUserEnrollCourse(where: { id: "${id}" }) {
+      id
+    }
+  }
+`;
+
+  const result = await request(MASTER_URL, mutationQuery);
+  return result;
+};

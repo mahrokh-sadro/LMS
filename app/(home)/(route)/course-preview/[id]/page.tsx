@@ -12,16 +12,13 @@ export default async function ListingPage({
 }: {
   params: Promise<IParams>;
 }) {
-  // const { userId } = auth();
   const user = await currentUser();
-  // console.log(user?.emailAddresses[0].emailAddress);
   const paramsData = await params;
   const course = await getCourseById(
     paramsData.id,
     user?.emailAddresses[0].emailAddress
   );
-  // console.log(paramsData.id);
-  console.log("course", course);
+  console.log("course------------", course);
 
   // if (!listing) {
   //   return <div className="text-center text-xl mt-10">Listing not found</div>;

@@ -1,46 +1,64 @@
 "use client";
 
-import { EnrollCourse } from "@/app/_services/index";
+import { EnrollCourse, PublishCourse } from "@/app/_services/index";
 import React from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
-const EnrollmentSection = ({ course }) => {
+interface EnrollmentSectionProps {
+  course: any;
+  enrollment: any;
+}
+
+const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
+  course,
+  enrollment,
+}) => {
   const { user } = useUser();
   const router = useRouter();
-
-  console.log("EnrollmentSection----->", user?.emailAddresses[0].emailAddress);
   const handleEnroll = async () => {
-    // console.log("User enrolled into course:", course.id);
-    // setIsEnrolled(true);
     if (user) {
       await EnrollCourse(course.id, user?.emailAddresses[0].emailAddress).then(
-        (res) => {
-          console.log("enroll", res);
+        async (res) => {
+          if (res) {
+            await PublishCourse(res?.createUserEnrollCourse?.id).then((res) => {
+              console.log("published", res);
+            });
+          }
         }
       );
     } else {
       router.push("/sign-in");
     }
   };
-
+  console.log("enrolled", enrollment);
   return (
     <div>
-      {course.free ? (
+      {enrollment?.courseId ? (
+        <div>
+          <button
+            // onClick={handleEnroll}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          >
+            Continue
+          </button>
+        </div>
+      ) : null}
+      {course.free && !enrollment?.courseId ? (
         <button
           onClick={handleEnroll}
           className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
         >
           Enroll Now
         </button>
-      ) : (
+      ) : !enrollment?.courseId ? (
         <button
           // onClick={handleEnroll}
           className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
         >
           Buy this course
         </button>
-      )}
+      ) : null}
 
       <button
         // onClick={handleEnroll}
