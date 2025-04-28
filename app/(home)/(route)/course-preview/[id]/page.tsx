@@ -18,11 +18,6 @@ export default async function ListingPage({
     paramsData.id,
     user?.emailAddresses[0].emailAddress
   );
-  console.log("course------------", course);
-
-  // if (!listing) {
-  //   return <div className="text-center text-xl mt-10">Listing not found</div>;
-  // }
 
   return (
     <>

@@ -36,6 +36,15 @@ export const getCourseById = async (id, userEmail) => {
         free
         totalChapters
         youtubeUrl
+        author
+        chapter(orderBy: position_ASC) {
+          id
+          title
+          description
+          videoUrl
+          position
+          freePreview
+        }
       }
       userEnrollCourses(where: { courseId: "${id}", userEmail: "${userEmail}" }) {
         courseId

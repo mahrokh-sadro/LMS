@@ -23,12 +23,15 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
           if (res) {
             await PublishCourse(res?.createUserEnrollCourse?.id).then((res) => {
               console.log("published", res);
+              if (res) {
+                router.push("/view-course" + course.id);
+              }
             });
           }
         }
       );
     } else {
-      router.push("/sign-in");
+      router.push("/");
     }
   };
   console.log("enrolled", enrollment);
@@ -37,7 +40,7 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
       {enrollment?.courseId ? (
         <div>
           <button
-            // onClick={handleEnroll}
+            onClick={() => router.push("/view-course/" + course.id)}
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
             Continue
