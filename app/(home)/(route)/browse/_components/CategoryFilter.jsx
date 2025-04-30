@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
 const CategoryFilter = ({ onFilterChange }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -15,13 +15,15 @@ const CategoryFilter = ({ onFilterChange }) => {
 
   const handleCategoryChange = (categoryValue) => {
     setSelectedCategory(categoryValue);
-    onFilterChange(categoryValue); // send selected value to parent
+    onFilterChange(categoryValue);
   };
 
   return (
     <div>
-      <h3>Filter by Category</h3>
-      <Stack direction="row" spacing={2}>
+      <Typography variant="h6" sx={{ marginBottom: 2 }}>
+        Filter by Category
+      </Typography>
+      <Stack direction="row" spacing={2} flexWrap="wrap">
         {categories.map((category) => (
           <Button
             key={category.id}
@@ -30,12 +32,20 @@ const CategoryFilter = ({ onFilterChange }) => {
             }
             sx={{
               backgroundColor:
-                selectedCategory === category.value ? "gray" : "white",
-              color: selectedCategory === category.value ? "#fff" : "#000",
+                selectedCategory === category.value
+                  ? "primary.main"
+                  : "transparent",
+              color:
+                selectedCategory === category.value ? "#fff" : "text.primary",
               "&:hover": {
                 backgroundColor:
-                  selectedCategory === category.value ? "#D3D3D3" : "#D3D3D3",
+                  selectedCategory === category.value
+                    ? "primary.dark"
+                    : "primary.light",
               },
+              padding: "8px 16px",
+              borderRadius: "20px",
+              textTransform: "capitalize",
             }}
             onClick={() => handleCategoryChange(category.value)}
           >

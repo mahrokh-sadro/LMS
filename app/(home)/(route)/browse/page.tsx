@@ -23,7 +23,6 @@ const Browse = () => {
     : courses;
   return (
     <div>
-      dashssssssssssssssssss
       <CategoryFilter onFilterChange={setFilteredCategory} />
       <CourseList courses={filteredCourses} />
     </div>

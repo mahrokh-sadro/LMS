@@ -16,57 +16,59 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
 }) => {
   const { user } = useUser();
   const router = useRouter();
+
   const handleEnroll = async () => {
     if (user) {
-      await EnrollCourse(course.id, user?.emailAddresses[0].emailAddress).then(
-        async (res) => {
-          if (res) {
-            await PublishCourse(res?.createUserEnrollCourse?.id).then((res) => {
-              console.log("published", res);
-              if (res) {
-                router.push("/view-course/" + course.id);
-              }
-            });
+      try {
+        const enrollmentResponse = await EnrollCourse(
+          course.id,
+          user?.emailAddresses[0].emailAddress
+        );
+
+        if (enrollmentResponse) {
+          const publishResponse = await PublishCourse(
+            enrollmentResponse?.createUserEnrollCourse?.id
+          );
+
+          if (publishResponse) {
+            router.push("/view-course/" + course.id);
           }
         }
-      );
+      } catch (error) {
+        console.error("Enrollment failed", error);
+      }
     } else {
       router.push("/");
     }
   };
-  console.log("enrolled", enrollment);
+
   return (
-    <div>
-      {enrollment?.courseId ? (
-        <div>
-          <button
-            onClick={() => router.push("/view-course/" + course.id)}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Continue
-          </button>
-        </div>
-      ) : null}
-      {course.free && !enrollment?.courseId ? (
+    <div className="flex flex-col space-y-4">
+      {enrollment?.courseId && (
+        <button
+          onClick={() => router.push("/view-course/" + course.id)}
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+        >
+          Continue
+        </button>
+      )}
+
+      {course.free && !enrollment?.courseId && (
         <button
           onClick={handleEnroll}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
         >
           Enroll Now
         </button>
-      ) : !enrollment?.courseId ? (
-        <button
-          // onClick={handleEnroll}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
+      )}
+
+      {!course.free && !enrollment?.courseId && (
+        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto">
           Buy this course
         </button>
-      ) : null}
+      )}
 
-      <button
-        // onClick={handleEnroll}
-        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition ml-4"
-      >
+      <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto">
         Buy Membership
       </button>
     </div>

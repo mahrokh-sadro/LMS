@@ -40,7 +40,7 @@ export default async function RootLayout({
           <header className="w-full bg-gray-200 px-6 py-3 shadow-sm">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
               <div className="text-lg font-semibold">🚀 My Portfolio</div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 ml-auto">
                 <SignedOut>
                   <SignInButton />
                   <SignUpButton />

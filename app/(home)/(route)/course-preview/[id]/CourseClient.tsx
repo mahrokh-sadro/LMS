@@ -23,6 +23,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
     const videoId = urlObj.searchParams.get("v");
     return `https://www.youtube.com/embed/${videoId}`;
   };
+
   return (
     <div className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -30,7 +31,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
           <h1 className="text-2xl font-bold mb-4">{course?.name}</h1>
 
           {course?.banner?.url && (
-            <div className="relative w-full h-[300px]">
+            <div className="relative w-full h-[300px] mb-4">
               <Image
                 src={course.banner.url}
                 alt="Course Banner"
@@ -57,7 +58,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
         </div>
 
         <div className="mt-6 md:mt-0 sticky top-28 self-start">
-          <OptionSection />
+          {/* <OptionSection /> */}
           <EnrollmentSection course={course} enrollment={enrollment} />
         </div>
       </div>
