@@ -13,10 +13,10 @@ const CourseList = ({ courses }) => {
         flexGrow: 1,
         padding: 4,
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={4} justifyContent="flex-start">
         {courses.map((course, index) => (
           <Grid item key={index}>
             <Box sx={{ textAlign: "left" }}>

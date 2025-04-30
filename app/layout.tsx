@@ -9,9 +9,6 @@ import {
 } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./(home)/_components/Header";
-import { AppBar, Toolbar, Typography, TextField } from "@mui/material";
-import SearchBar from "./(home)/_components/SearchBar";
 import DynamicSearchBarWrapper from "./(home)/_components/DynamicSearchBarWrapper";
 
 const geistSans = Geist({
@@ -40,26 +37,23 @@ export default async function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <header
-            className="flex justify-end items-center p-4 gap-4 h-16 "
-            style={{ backgroundColor: "#D3D3D3" }}
-          >
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton />
-            </SignedOut>
-            <SignedIn>
-              <DynamicSearchBarWrapper />
-              <UserButton />
-            </SignedIn>
+          <header className="w-full bg-gray-200 px-6 py-3 shadow-sm">
+            <div className="max-w-7xl mx-auto flex justify-between items-center">
+              <div className="text-lg font-semibold">🚀 My Portfolio</div>
+              <div className="flex items-center gap-4">
+                <SignedOut>
+                  <SignInButton />
+                  <SignUpButton />
+                </SignedOut>
+                <SignedIn>
+                  <DynamicSearchBarWrapper />
+                  <UserButton afterSignOutUrl="/" />
+                </SignedIn>
+              </div>
+            </div>
           </header>
-          {/* <SignedIn>
-            <Header />
-          </SignedIn> */}
 
-          <SignedOut></SignedOut>
-
-          {children}
+          <main className="min-h-screen">{children}</main>
         </body>
       </html>
     </ClerkProvider>
