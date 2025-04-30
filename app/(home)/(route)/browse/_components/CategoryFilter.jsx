@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button, Stack } from "@mui/material";
 
-const CategoryFilter = () => {
+const CategoryFilter = ({ onFilterChange }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const categories = [
@@ -15,7 +15,7 @@ const CategoryFilter = () => {
 
   const handleCategoryChange = (categoryValue) => {
     setSelectedCategory(categoryValue);
-    // Add any logic here to filter content based on the selected category
+    onFilterChange(categoryValue); // send selected value to parent
   };
 
   return (

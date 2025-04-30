@@ -18,7 +18,7 @@ interface ChapterNavProps {
   enrollment: {
     courseId: string;
     userEmail: string;
-    completedChapter: string | null;
+    completedChapterId: any;
   };
   setActiveChapter: any;
 }

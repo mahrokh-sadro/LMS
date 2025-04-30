@@ -24,7 +24,7 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
             await PublishCourse(res?.createUserEnrollCourse?.id).then((res) => {
               console.log("published", res);
               if (res) {
-                router.push("/view-course" + course.id);
+                router.push("/view-course/" + course.id);
               }
             });
           }

@@ -5,6 +5,8 @@ import { getCourseList } from "../../../_services/index";
 import CourseList from "./_components/CourseList";
 
 const Browse = () => {
+  const [filteredCategory, setFilteredCategory] = useState("");
+
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     getCourses();
@@ -16,12 +18,14 @@ const Browse = () => {
       setCourses(res);
     });
   };
-
+  const filteredCourses = filteredCategory
+    ? courses.filter((course: any) => course?.category === filteredCategory)
+    : courses;
   return (
     <div>
       dashssssssssssssssssss
-      <CategoryFilter />
-      <CourseList courses={courses} />
+      <CategoryFilter onFilterChange={setFilteredCategory} />
+      <CourseList courses={filteredCourses} />
     </div>
   );
 };

@@ -7,14 +7,18 @@ interface IParams {
   courseId: string;
 }
 
-export default async function ViewCourse({ params }: { params: IParams }) {
+export default async function ViewCourse({
+  params,
+}: {
+  params: Promise<IParams>;
+}) {
   const user = await currentUser();
-
+  const paramsData = await params;
   const course = await getCourseById(
-    params.courseId,
+    paramsData?.courseId,
     user?.emailAddresses[0].emailAddress
   );
-
+  console.log("course", course);
   return (
     <ChapterClient course={course.course} enrollment={course.enrollment} />
   );

@@ -15,6 +15,7 @@ export const getCourseList = async () => {
         free
         id
         totalChapters
+        category
       }
     }
   `;
@@ -49,7 +50,9 @@ export const getCourseById = async (id, userEmail) => {
       userEnrollCourses(where: { courseId: "${id}", userEmail: "${userEmail}" }) {
         courseId
         userEmail
-        completedChapter
+        completedChapterId 
+
+        id
       }
     }
   `;
@@ -93,4 +96,77 @@ export const PublishCourse = async (id) => {
 
   const result = await request(MASTER_URL, mutationQuery);
   return result;
+};
+
+// export const markChapterCompleted = async (
+//   enrollmentId,
+//   existingCompletedChapters,
+//   completedChapterId
+// ) => {
+//   const updatedCompletedChapters = [
+//     ...new Set([...existingCompletedChapters, completedChapterId]), // Ensuring uniqueness
+//   ];
+
+//   const mutationQuery = `
+//     mutation UpdateCompletedChapters($id: ID!, $completedChapterIds: [String!]) {
+//       updateUserEnrollCourse(
+//         where: { id: $id }
+//         data: {
+//           completedChapterId: {
+//             add: $completedChapterIds
+//           }
+//         }
+//       ) {
+//         id
+//         completedChapterId
+//       }
+//       publishManyUsersEnrollCourseConnection(to) {
+//         i
+//       }
+//     }
+//   `;
+
+//   const variables = {
+//     id: enrollmentId,
+//     completedChapterIds: updatedCompletedChapters,
+//   };
+
+//   try {
+//     const result = await request(MASTER_URL, mutationQuery, variables);
+//     return result;
+//   } catch (error) {
+//     console.error("Error marking chapter as completed:", error);
+//     throw error;
+//   }
+// };
+export const GetUserCourseList = async (email) => {
+  try {
+    const query =
+      gql`
+      query MyQuery {
+        userEnrollCourses(where: { userEmail: "` +
+      email +
+      `" }) {
+          courseList {
+            id
+            name
+            free
+            description
+            author
+            banner {
+              url
+            }
+          }
+        }
+      }
+    `;
+    const result = await request(MASTER_URL, query);
+    const courses = result.userEnrollCourses
+      ?.flatMap((enroll) => enroll.courseList)
+      .filter(Boolean);
+    return courses;
+  } catch (error) {
+    console.error("Error fetching user course list:", error);
+    return [];
+  }
 };
