@@ -41,8 +41,8 @@ const FullVideoPlayer: React.FC<FullVideoPlayerProps> = ({
     return `https://www.youtube.com/embed/${videoId}`;
   };
   const updatedCompletedChapters = enrollment?.completedChapterId || [];
-  console.log("activeChapter----------------", activeChapter);
-  console.log("enrollment-----------", enrollment);
+  // console.log("activeChapter----------------", activeChapter);
+  // console.log("enrollment-----------", enrollment);
   // const handleMarkAsCompleted = async () => {
   //   console.log(`Chapter ${activeChapter.id} marked as completed.`);
   //   await markChapterCompleted(

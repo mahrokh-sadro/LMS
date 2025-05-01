@@ -17,7 +17,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
     const videoId = urlObj.searchParams.get("v");
     return `https://www.youtube.com/embed/${videoId}`;
   };
-  console.log(course);
+  // console.log(course);
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

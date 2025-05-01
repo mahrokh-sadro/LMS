@@ -42,6 +42,14 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
     }
   };
 
+  const handleBuyCourse = async () => {
+    console.log("Buy course clicked", course.id);
+    if (user) {
+      router.push(`/checkout/${course.id}`);
+    } else {
+      router.push("/sign-in");
+    }
+  };
   return (
     <div className="flex flex-col space-y-4">
       {enrollment?.courseId && (
@@ -63,7 +71,10 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
       )}
 
       {!course.free && !enrollment?.courseId && (
-        <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto">
+        <button
+          onClick={handleBuyCourse}
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+        >
           Buy this course
         </button>
       )}

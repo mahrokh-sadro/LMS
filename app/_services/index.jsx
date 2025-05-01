@@ -55,6 +55,7 @@ export const getCourseById = async (id, userEmail) => {
         }  
         requirements  
         outcomes
+        price
       }
       userEnrollCourses(where: { courseId: "${id}", userEmail: "${userEmail}" }) {
         courseId
@@ -84,9 +85,9 @@ export const EnrollCourse = async (id, userEmail) => {
     `", courseId: "` +
     id +
     `" }
-      ) {
-        id
-      }
+          ) {
+            id
+          }
     }
   `;
 
