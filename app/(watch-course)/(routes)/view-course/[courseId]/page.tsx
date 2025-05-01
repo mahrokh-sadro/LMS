@@ -4,7 +4,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { getCourseById } from "../../../../_services/index";
 
 interface IParams {
-  courseId: string;
+  courseId: any;
 }
 
 export default async function ViewCourse({
@@ -20,6 +20,7 @@ export default async function ViewCourse({
   );
   console.log("course", course);
   return (
+    // <></>
     <ChapterClient course={course.course} enrollment={course.enrollment} />
   );
 }

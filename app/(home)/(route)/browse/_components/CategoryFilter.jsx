@@ -7,10 +7,10 @@ const CategoryFilter = ({ onFilterChange }) => {
 
   const categories = [
     { id: "all", name: "All", value: "" },
-    { id: "1", name: "Electronics", value: "electronics" },
-    { id: "2", name: "Books", value: "books" },
-    { id: "3", name: "Clothing", value: "clothing" },
-    { id: "4", name: "Home & Kitchen", value: "home_kitchen" },
+    { id: "1", name: "Business", value: "Business" },
+    { id: "2", name: "AI", value: "AI" },
+    { id: "3", name: "Tech", value: "Tech" },
+    { id: "4", name: "Health", value: "Health" },
   ];
 
   const handleCategoryChange = (categoryValue) => {
@@ -20,9 +20,9 @@ const CategoryFilter = ({ onFilterChange }) => {
 
   return (
     <div>
-      <Typography variant="h6" sx={{ marginBottom: 2 }}>
+      {/* <Typography variant="h6" sx={{ marginBottom: 2 }}>
         Filter by Category
-      </Typography>
+      </Typography> */}
       <Stack direction="row" spacing={2} flexWrap="wrap">
         {categories.map((category) => (
           <Button

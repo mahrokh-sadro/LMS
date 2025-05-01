@@ -6,7 +6,7 @@ import { FaPlay, FaPause } from "react-icons/fa";
 interface ChapterNavProps {
   course: {
     name: string;
-    author: string;
+    // author: string;
     chapter: Array<{
       id: string;
       title: string;
@@ -50,7 +50,7 @@ const ChapterNav: React.FC<ChapterNavProps> = ({
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <h1 className="text-2xl font-semibold text-gray-800">{course?.name}</h1>
-      <p className="text-md text-gray-500 mt-1">Author: {course?.author}</p>
+      {/* <p className="text-md text-gray-500 mt-1">Author: {course?.author}</p> */}
 
       <div className="mt-6">
         <h2 className="text-lg font-semibold text-gray-700">Chapters</h2>

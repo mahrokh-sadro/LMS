@@ -10,6 +10,7 @@ import {
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DynamicSearchBarWrapper from "./(home)/_components/DynamicSearchBarWrapper";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +40,7 @@ export default async function RootLayout({
         >
           <header className="w-full bg-gray-200 px-6 py-3 shadow-sm">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
-              <div className="text-lg font-semibold">🚀 My Portfolio</div>
+              <Link href="/browse">Browse Courses</Link>
               <div className="flex items-center gap-4 ml-auto">
                 <SignedOut>
                   <SignInButton />
