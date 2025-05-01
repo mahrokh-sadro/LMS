@@ -16,6 +16,8 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
 }) => {
   const { user } = useUser();
   const router = useRouter();
+  console.log("Course data: in checkout", course);
+  console.log("enrollment data: in checkout", enrollment);
 
   const handleEnroll = async () => {
     if (user) {
@@ -43,7 +45,7 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
   };
 
   const handleBuyCourse = async () => {
-    console.log("Buy course clicked", course.id);
+    // console.log("Buy course clicked", course.id);
     if (user) {
       router.push(`/checkout/${course.id}`);
     } else {

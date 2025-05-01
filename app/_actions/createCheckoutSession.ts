@@ -1,11 +1,15 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-04-30.basil", // Use valid version
-});
+const stripe = new Stripe(
+  "sk_test_51R2FT8GfAmxmqqaW6FfZCQQSjfoetCxvm8CYcYaMrOrstSS7W8FsMcCKacuuueaQmDRVcFiub0imePfb9IxZdjAJ00fUY6lyR3",
+  {
+    apiVersion: "2025-04-30.basil", // Use valid version
+  }
+);
 
 export async function createCheckoutSession(course: any, email: string) {
   console.log("Creating checkout session for course:", course);
+  console.log("Course Price:", course?.price);
 
   const priceInCents =
     course.price && !isNaN(course.price) && course.price > 0
