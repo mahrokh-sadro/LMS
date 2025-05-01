@@ -1,7 +1,7 @@
 // app/(checkout)/(route)/checkout/[courseId]/success/page.tsx
 
 import { EnrollCourse, PublishCourse } from "@/app/_services/index";
-import { redirect } from "next/navigation";
+import SuccessRedirect from "./SuccessRedirect";
 import { currentUser } from "@clerk/nextjs/server";
 
 interface SuccessPageProps {
@@ -22,15 +22,10 @@ const SuccessPage = async ({ params, searchParams }: SuccessPageProps) => {
     const enrollment = await EnrollCourse(courseId, email);
     await PublishCourse(enrollment.createUserEnrollCourse.id);
 
-    // ✅ Redirect to course view page
-    redirect(`/view-course/${courseId}`);
+    return <SuccessRedirect courseId={courseId} />;
   } catch (error) {
     console.error("Enrollment error after Stripe payment:", error);
-    return (
-      <div>
-        Payment was successful, but enrollment failed. Please contact support.
-      </div>
-    );
+    return <div>Payment succeeded but enrollment failed. Contact support.</div>;
   }
 };
 
