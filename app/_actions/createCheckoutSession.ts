@@ -37,7 +37,7 @@ export async function createCheckoutSession(course: any, email: string) {
       },
     ],
     customer_email: email,
-    success_url: `http://localhost:3000/view-course/${course.id}?success=true`,
+    success_url: `http://localhost:3000/checkout/${course.id}/success?email=${email}`,
     cancel_url: `http://localhost:3000/course-preview/${course.id}?canceled=true`,
   });
 
