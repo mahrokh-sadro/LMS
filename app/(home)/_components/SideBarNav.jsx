@@ -54,14 +54,15 @@ const SideBarNav = () => {
           }}
         >
           <Image
-            src="/logo.jpg"
+            src="/logo.png"
             alt="Logo"
-            width={40}
-            height={40}
+            width={60}
+            height={60}
             style={{
               borderRadius: "50%",
               objectFit: "cover",
             }}
+            loading="lazy"
           />
         </Box>
 

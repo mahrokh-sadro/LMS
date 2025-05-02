@@ -36,6 +36,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
+                loading="lazy"
               />
             </div>
           )}
@@ -106,6 +107,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
                 width={60}
                 height={60}
                 className="rounded-full"
+                loading="lazy"
               />
               <div>
                 <p className="font-medium text-lg">{course?.author?.name}</p>

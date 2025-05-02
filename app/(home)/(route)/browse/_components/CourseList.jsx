@@ -56,6 +56,7 @@ const CourseList = ({ courses }) => {
                       alt={course.name}
                       fill
                       style={{ objectFit: "cover" }}
+                      loading="lazy"
                     />
                   </CardMedia>
                 )}

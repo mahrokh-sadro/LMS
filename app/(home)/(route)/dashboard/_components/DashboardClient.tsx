@@ -20,6 +20,7 @@ const DashboardClient = ({ courses }) => {
               alt={course.name}
               width={40}
               height={40}
+              loading="lazy"
             />
           </div>
         ))
