@@ -57,34 +57,49 @@ export const getCourseById = async (id, userEmail) => {
         outcomes
         price
       }
-      userEnrollCourses(where: { courseId: "${id}", userEmail: "${userEmail}" }) {
+     userEnrollCourses(where: { userEmail: "${userEmail}" }) {
+        id
         courseId
         userEmail
-        completedChapterId 
-
-        id
+        membership
+        completedChapterId
       }
     }
   `;
 
   const result = await request(MASTER_URL, query);
+  const allEnrollments = result.userEnrollCourses;
+
+  // 1. Check if user has a membership
+  const membershipEnrollment = allEnrollments.find(
+    (e) => e.membership === true
+  );
+
+  // 2. If not, fallback to specific course enrollment
+  const courseEnrollment = allEnrollments.find((e) => e.courseId === id);
 
   return {
     course: result.courseLists[0],
-    enrollment: result.userEnrollCourses[0] || null, // if not enrolled, null
+    enrollment: membershipEnrollment || courseEnrollment || null,
   };
 };
 
-export const EnrollCourse = async (id, userEmail) => {
+export const EnrollCourse = async (id, userEmail, membership = false) => {
   const mutationQuery =
     gql`
     mutation MyMutation {
       createUserEnrollCourse(
         data: { userEmail: "` +
     userEmail +
-    `", courseId: "` +
+    `",
+                courseId: "` +
     id +
-    `" }
+    `" ,
+                membership: ` +
+    membership +
+    `,
+                
+                }
           ) {
             id
           }

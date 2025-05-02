@@ -4,6 +4,7 @@ import { EnrollCourse, PublishCourse } from "@/app/_services/index";
 import React from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
+import { createMembershipCheckoutSession } from "@/app/_actions/createMembershipCheckoutSession";
 
 interface EnrollmentSectionProps {
   course: any;
@@ -16,9 +17,9 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
 }) => {
   const { user } = useUser();
   const router = useRouter();
-  console.log("Course data: in checkout", course);
-  console.log("enrollment data: in checkout", enrollment);
-
+  console.log("EnrollmentSection enrollment", enrollment);
+  const isMember = enrollment ? enrollment.membership : false;
+  console.log("isMember", isMember);
   const handleEnroll = async () => {
     if (user) {
       try {
@@ -49,9 +50,27 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
     if (user) {
       router.push(`/checkout/${course.id}`);
     } else {
-      router.push("/sign-in");
+      router.push("/");
     }
   };
+
+  const handleBuyMembership = async () => {
+    if (user) {
+      try {
+        const url = await createMembershipCheckoutSession(
+          user.emailAddresses[0].emailAddress
+        );
+        if (url) {
+          window.location.href = url;
+        }
+      } catch (error) {
+        console.error("Membership checkout failed:", error);
+      }
+    } else {
+      router.push("/");
+    }
+  };
+
   return (
     <div className="flex flex-col space-y-4">
       {enrollment?.courseId && (
@@ -63,16 +82,17 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
         </button>
       )}
 
-      {course.free && !enrollment?.courseId && (
-        <button
-          onClick={handleEnroll}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
-        >
-          Enroll Now
-        </button>
-      )}
+      {isMember ||
+        (course.free && !enrollment?.courseId && (
+          <button
+            onClick={handleEnroll}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+          >
+            Enroll Now
+          </button>
+        ))}
 
-      {!course.free && !enrollment?.courseId && (
+      {!isMember && !course.free && !enrollment?.courseId && (
         <button
           onClick={handleBuyCourse}
           className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
@@ -81,9 +101,21 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
         </button>
       )}
 
-      <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto">
-        Buy Membership
-      </button>
+      {!isMember ? (
+        <button
+          onClick={handleBuyMembership}
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+        >
+          Buy Membership
+        </button>
+      ) : (
+        <button
+          disabled
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+        >
+          You are a member
+        </button>
+      )}
     </div>
   );
 };
