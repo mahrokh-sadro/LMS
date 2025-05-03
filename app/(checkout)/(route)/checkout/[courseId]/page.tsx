@@ -40,7 +40,7 @@ const CheckoutPage = () => {
   }, [courseId, user]);
 
   if (!user) {
-    return <p>Please log in to continue.</p>;
+    return redirect("/sign-in");
   }
 
   return (

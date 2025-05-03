@@ -41,7 +41,7 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
         console.error("Enrollment failed", error);
       }
     } else {
-      router.push("/");
+      router.push("/sign-in");
     }
   };
 
@@ -50,7 +50,7 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
     if (user) {
       router.push(`/checkout/${course.id}`);
     } else {
-      router.push("/");
+      router.push("/sign-in");
     }
   };
 
@@ -67,12 +67,12 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
         console.error("Membership checkout failed:", error);
       }
     } else {
-      router.push("/");
+      router.push("/sign-in");
     }
   };
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 pt-[40px] pb-[40px]">
       {enrollment?.courseId && (
         <button
           onClick={() => router.push("/view-course/" + course.id)}
@@ -111,7 +111,7 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
       ) : (
         <button
           disabled
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg w-full sm:w-auto opacity-50 cursor-not-allowed pointer-events-none"
         >
           You are a member
         </button>

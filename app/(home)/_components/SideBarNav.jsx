@@ -23,7 +23,7 @@ const SideBarNav = () => {
     { text: "Browse", href: "/browse" },
     { text: "Dashboard", href: "/dashboard" },
     { text: "Upgrade", href: "/upgrade" },
-    { text: "NewsLetter", href: "/newsletter" },
+    // { text: "NewsLetter", href: "/newsletter" },
   ];
 
   const pathname = usePathname(); // Use the current path for route highlighting

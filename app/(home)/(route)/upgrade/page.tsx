@@ -6,7 +6,7 @@ import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 import { useUser } from "@clerk/nextjs";
 import { getUserMembership } from "@/app/_services/index";
 import { createMembershipCheckoutSession } from "@/app/_actions/createMembershipCheckoutSession";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const Page: React.FC = () => {
   const { user } = useUser();
@@ -15,7 +15,8 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     const enrollMembership = async () => {
-      if (!user) return;
+      if (!user) return redirect("/sign-in");
+
       const email = user.emailAddresses[0]?.emailAddress;
       const membershipData = await getUserMembership(email);
       setMembership(membershipData);
@@ -26,7 +27,7 @@ const Page: React.FC = () => {
   }, [user]);
 
   const handleCheckout = async (subscription: "month" | "year") => {
-    if (!user) return;
+    if (!user) return redirect("/sign-in");
     const email = user.emailAddresses[0]?.emailAddress;
     const sessionUrl = await createMembershipCheckoutSession(
       email,

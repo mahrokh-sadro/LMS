@@ -1,8 +1,8 @@
 // app/(home)/layout.tsx
 // "use cleint";
 import SideBarNav from "./../_components/SideBarNav";
-import Header from "./../_components/Header";
-import SearchBar from "../_components/SearchBar";
+// import Header from "./../_components/Header";
+// import SearchBar from "../_components/SearchBar";
 
 export default function HomeLayout({
   children,
