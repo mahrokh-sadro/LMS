@@ -18,9 +18,7 @@ export default async function ViewCourse({
     paramsData?.courseId,
     user?.emailAddresses[0].emailAddress
   );
-  // console.log("course", course);
   return (
-    // <></>
     <ChapterClient course={course.course} enrollment={course.enrollment} />
   );
 }

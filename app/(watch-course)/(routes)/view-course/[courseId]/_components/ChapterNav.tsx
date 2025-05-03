@@ -48,44 +48,48 @@ const ChapterNav: React.FC<ChapterNavProps> = ({
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h1 className="text-2xl font-semibold text-gray-800">{course?.name}</h1>
-      {/* <p className="text-md text-gray-500 mt-1">Author: {course?.author}</p> */}
+    <div className="p-4 text-white">
+      <h1 className="text-xl font-bold mb-6">{course?.name}</h1>
+      <h2 className="text-md font-semibold mb-2 text-gray-300">Chapters</h2>
+      <ul className="space-y-2">
+        {course.chapter.map((chapter, index) => {
+          const isActive = activeIndex === index;
+          const isCompleted = enrollment.completedChapterId?.includes(
+            chapter.id
+          );
 
-      <div className="mt-6">
-        <h2 className="text-lg font-semibold text-gray-700">Chapters</h2>
-        <ul className="space-y-4 mt-4">
-          {course.chapter.map((chapter, index) => (
+          return (
             <li
               key={chapter.id}
-              className={`flex justify-between items-center p-3 rounded-lg ${
-                activeIndex === index
-                  ? "bg-blue-100 text-blue-600"
-                  : enrollment.completedChapter === chapter.id
-                  ? "bg-green-100 text-green-600"
-                  : "bg-gray-50 text-gray-600"
-              } hover:bg-blue-50 cursor-pointer transition-all duration-200`}
+              className={`flex items-start p-3 rounded-lg transition-colors duration-200 cursor-pointer
+                ${
+                  isActive
+                    ? "bg-blue-600 text-white"
+                    : "hover:bg-slate-700 text-gray-300"
+                }
+              `}
               onClick={() => handlePlayPause(index, chapter)}
             >
-              <div className="flex items-center">
-                {isPlaying && activeIndex === index ? (
-                  <FaPause className="h-6 w-6 text-blue-600 mr-2 cursor-pointer" />
+              <div className="mr-3 pt-1">
+                {isPlaying && isActive ? (
+                  <FaPause className="text-white" />
                 ) : (
-                  <FaPlay className="h-6 w-6 text-gray-500 mr-2 cursor-pointer" />
+                  <FaPlay className="text-gray-400" />
                 )}
-                <div>
-                  <h3 className="text-md font-medium">{chapter?.title}</h3>
-                  {chapter.description && (
-                    <p className="text-sm text-gray-500">
-                      {chapter?.description}
-                    </p>
-                  )}
-                </div>
               </div>
+              <div className="flex-1">
+                <h3 className="font-medium leading-tight">{chapter.title}</h3>
+                {chapter.description && (
+                  <p className="text-sm text-gray-400">{chapter.description}</p>
+                )}
+              </div>
+              {isCompleted && (
+                <span className="ml-2 text-green-400 text-sm">✔</span>
+              )}
             </li>
-          ))}
-        </ul>
-      </div>
+          );
+        })}
+      </ul>
     </div>
   );
 };

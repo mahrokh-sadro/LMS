@@ -56,15 +56,17 @@ const FullVideoPlayer: React.FC<FullVideoPlayerProps> = ({
   // };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">{activeChapter.title}</h1>
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold mb-4 text-gray-800">
+        {activeChapter.title}
+      </h1>
 
       {activeChapter.videoUrl ? (
         isYouTubeUrl(activeChapter.videoUrl) ? (
           <iframe
             src={getYouTubeEmbedUrl(activeChapter.videoUrl)}
             title="YouTube video player"
-            className="w-full h-[500px] rounded-lg shadow-md mb-4"
+            className="w-full h-[450px] rounded-lg shadow mb-4"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
@@ -72,7 +74,7 @@ const FullVideoPlayer: React.FC<FullVideoPlayerProps> = ({
           <video
             src={activeChapter.videoUrl}
             controls
-            className="w-full h-auto rounded-lg shadow-md mb-4"
+            className="w-full h-auto rounded-lg shadow mb-4"
           />
         )
       ) : (
@@ -84,16 +86,12 @@ const FullVideoPlayer: React.FC<FullVideoPlayerProps> = ({
       {/* {!completed ? (
         <button
           onClick={handleMarkAsCompleted}
-          className={`${
-            completed
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
-          } text-white font-semibold py-2 px-4 rounded shadow-md transition-all duration-200`}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded shadow transition duration-200"
         >
           Mark as Completed
         </button>
       ) : (
-        <p className="text-green-600 font-semibold"> ✅ Chapter completed</p>
+        <p className="text-green-600 font-semibold">✅ Chapter completed</p>
       )} */}
     </div>
   );

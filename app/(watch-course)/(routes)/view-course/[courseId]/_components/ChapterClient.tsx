@@ -17,11 +17,9 @@ const ChapterClient: React.FC<ChapterClientProps> = ({
     course?.chapter[0] || null
   );
 
-  //   console.log("enrollment-------", enrollment);
-
   return (
-    <div className="flex h-screen overflow-hidden">
-      <div className="w-64 bg-gray-100 p-4 overflow-y-auto">
+    <div className="flex h-screen">
+      <div className="w-72 bg-[#1e293b] text-white p-4 overflow-y-auto">
         <ChapterNav
           course={course}
           enrollment={enrollment}
@@ -29,7 +27,7 @@ const ChapterClient: React.FC<ChapterClientProps> = ({
         />
       </div>
 
-      <div className="flex-1 p-4 overflow-y-auto">
+      <div className="flex-1 bg-gray-50 p-4 overflow-y-auto">
         <FullVideoPlayer
           course={course}
           enrollment={enrollment}
