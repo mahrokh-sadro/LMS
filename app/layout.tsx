@@ -51,7 +51,7 @@ export default async function RootLayout({
                   <SignInButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
                     Sign In
                   </SignInButton>
-                  <SignUpButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-green-700 transition">
+                  <SignUpButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
                     Sign Up
                   </SignUpButton>
                 </SignedOut>

@@ -18,7 +18,7 @@ export default function Home() {
         </h1>
         <p className="text-lg sm:text-xl text-gray-600">
           A developer-first platform built to accelerate your journey. Powered
-          by Next.js, Clerk, and GraphCMS.
+          by Next.js, Clerk, and GraphQL.
         </p>
         <Link
           href="/browse"
