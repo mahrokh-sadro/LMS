@@ -34,7 +34,6 @@ export default function Home() {
         transition={{ delay: 0.3, duration: 0.8 }}
         className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 w-full max-w-6xl"
       >
-        {/* 🎯 Featured Course */}
         <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
           <FaBullseye className="text-4xl text-blue-600 mb-4" />
           <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -46,7 +45,6 @@ export default function Home() {
           </p>
         </div>
 
-        {/* 🚀 Project Highlight */}
         <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
           <FaRocket className="text-4xl text-purple-600 mb-4" />
           <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -58,7 +56,6 @@ export default function Home() {
           </p>
         </div>
 
-        {/* 📚 Learn More */}
         <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
           <FaBookOpen className="text-4xl text-green-600 mb-4" />
           <h3 className="text-xl font-semibold text-gray-800 mb-2">

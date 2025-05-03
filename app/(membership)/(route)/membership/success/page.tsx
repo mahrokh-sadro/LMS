@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { EnrollCourse, PublishCourse } from "@/app/_services/index";
 
@@ -18,8 +18,6 @@ const SuccessPage: React.FC = () => {
       try {
         const enrollment = await EnrollCourse(null, email, true);
         await PublishCourse(enrollment.createUserEnrollCourse.id);
-
-        console.log("Membership enrollment successful:", enrollment);
       } catch (err) {
         console.error("Enrollment failed:", err);
       }

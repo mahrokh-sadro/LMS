@@ -1,7 +1,7 @@
 // app/listings/[listingId]/page.tsx
 import { getCourseById } from "../../../../_services/index";
 import CourseClient from "./CourseClient";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 
 interface IParams {
   id: string;

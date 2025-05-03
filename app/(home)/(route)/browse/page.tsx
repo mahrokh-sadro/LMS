@@ -14,7 +14,6 @@ const Browse = () => {
 
   const getCourses = () => {
     getCourseList().then((res) => {
-      // console.log("Courses:", res);
       setCourses(res);
     });
   };

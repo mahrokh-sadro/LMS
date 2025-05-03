@@ -17,11 +17,9 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
     const videoId = urlObj.searchParams.get("v");
     return `https://www.youtube.com/embed/${videoId}`;
   };
-  // console.log(course);
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Left Content */}
         <div className="md:col-span-2 space-y-8">
           <div>
             <h1 className="text-3xl font-bold">{course?.name}</h1>
@@ -40,7 +38,6 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
               />
             </div>
           )}
-          {/* YouTube Preview */}
           {/* {course?.youtubeUrl && (
             <div className="w-full aspect-video mt-6 mb-8">
               <iframe
@@ -129,7 +126,6 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
           )}
         </div>
 
-        {/* Right Sidebar */}
         <div className="md:col-span-1">
           <div className="bg-white shadow-lg rounded-lg p-6 sticky top-28">
             <EnrollmentSection course={course} enrollment={enrollment} />

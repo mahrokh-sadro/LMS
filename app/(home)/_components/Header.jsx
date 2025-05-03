@@ -7,7 +7,6 @@ import { useUser } from "@clerk/nextjs";
 
 const Header = () => {
   const { isLoaded, user } = useUser();
-  // console.log(user);
   return (
     <AppBar position="static">
       <Toolbar

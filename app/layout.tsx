@@ -9,7 +9,6 @@ import {
 } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import DynamicSearchBarWrapper from "./(home)/_components/DynamicSearchBarWrapper";
 import Link from "next/link";
 
 const geistSans = Geist({
@@ -52,14 +51,13 @@ export default async function RootLayout({
                   <SignInButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
                     Sign In
                   </SignInButton>
-                  <SignUpButton className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+                  <SignUpButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-green-700 transition">
                     Sign Up
                   </SignUpButton>
                 </SignedOut>
 
                 <SignedIn>
-                  {/* Show Dynamic Search Bar & User Button when signed in */}
-                  <DynamicSearchBarWrapper />
+                  {/* <DynamicSearchBarWrapper /> */}
                   <UserButton
                     afterSignOutUrl="/" // Redirect to home page after sign-out
                     className="text-black"

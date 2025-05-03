@@ -13,20 +13,20 @@ import MailIcon from "@mui/icons-material/Mail";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { usePathname } from "next/navigation"; // To get current route
-
+import { usePathname } from "next/navigation";
+import HomeIcon from "@mui/icons-material/Home";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import UpgradeIcon from "@mui/icons-material/WorkspacePremium";
 const SideBarNav = () => {
   const drawerWidth = 250;
   const [activeIndex, setActiveIndex] = useState(0);
 
   const navItems = [
-    { text: "Browse", href: "/browse" },
-    { text: "Dashboard", href: "/dashboard" },
-    { text: "Upgrade", href: "/upgrade" },
-    // { text: "NewsLetter", href: "/newsletter" },
+    { text: "Browse", href: "/browse", icon: <HomeIcon /> },
+    { text: "Dashboard", href: "/dashboard", icon: <DashboardIcon /> },
+    { text: "Upgrade", href: "/upgrade", icon: <UpgradeIcon /> },
   ];
-
-  const pathname = usePathname(); // Use the current path for route highlighting
+  const pathname = usePathname();
 
   return (
     <div>
@@ -74,7 +74,7 @@ const SideBarNav = () => {
               <ListItemButton
                 component={Link}
                 href={item.href}
-                selected={pathname === item.href} // Highlight the active route
+                selected={pathname === item.href}
                 sx={{
                   backgroundColor:
                     pathname === item.href ? "#f0f0f0" : "transparent",
@@ -83,9 +83,8 @@ const SideBarNav = () => {
                   },
                 }}
               >
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+
                 <ListItemText primary={item.text} />
               </ListItemButton>
             </ListItem>

@@ -18,10 +18,7 @@ const SuccessPage: React.FC = () => {
       try {
         const enrollment = await EnrollCourse(null, email, true);
         await PublishCourse(enrollment.createUserEnrollCourse.id);
-
-        console.log("Membership enrollment successful:", enrollment);
       } catch (err) {
-        console.error("Enrollment failed:", err);
       }
     };
 

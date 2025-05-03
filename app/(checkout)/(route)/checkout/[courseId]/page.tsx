@@ -13,7 +13,6 @@ const CheckoutPage = () => {
 
   const params = useParams();
   const courseId = params.courseId;
-  // console.log("courseId in checkout--------", courseId);
 
   useEffect(() => {
     const initiateCheckout = async () => {
@@ -24,9 +23,7 @@ const CheckoutPage = () => {
 
           const course = await getCourseById(courseId, email);
 
-          // console.log("Course data: in checkout", course);
           const url = await createCheckoutSession(course.course, email);
-          console.log("Checkout URL:", url);
           setCheckoutUrl(url);
         } catch (error) {
           console.error("Error during checkout initiation:", error);

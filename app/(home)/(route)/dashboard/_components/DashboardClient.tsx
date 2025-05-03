@@ -2,12 +2,7 @@ import React from "react";
 import Image from "next/image";
 import EmptyStateCard from "@/app/(home)/_components/EmptyStateCard";
 
-// interface DashboardClientProps {
-//   courses: any;
-// }
-
 const DashboardClient = ({ courses }) => {
-  //   console.log(courses);
   return (
     <div>
       {Array.isArray(courses) && courses.length > 0 ? (

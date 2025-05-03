@@ -8,9 +8,6 @@ const stripe = new Stripe(
 );
 
 export async function createCheckoutSession(course: any, email: string) {
-  console.log("Creating checkout session for course:", course);
-  console.log("Course Price:", course?.price);
-
   const priceInCents =
     course.price && !isNaN(course.price) && course.price > 0
       ? Math.round(course.price * 100)

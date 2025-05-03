@@ -1,4 +1,3 @@
-// app/(upgrade)/page.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -20,7 +19,6 @@ const Page: React.FC = () => {
       const email = user.emailAddresses[0]?.emailAddress;
       const membershipData = await getUserMembership(email);
       setMembership(membershipData);
-      console.log("Membership", membershipData);
     };
 
     enrollMembership();
@@ -56,7 +54,6 @@ const Page: React.FC = () => {
         </Typography>
       ) : (
         <>
-          {/* Monthly Plan */}
           <Card sx={{ width: 300, p: 2 }}>
             <CardContent>
               <Typography variant="h5" gutterBottom>

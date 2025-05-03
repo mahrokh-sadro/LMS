@@ -15,7 +15,6 @@ const Dashboard = async () => {
     user?.emailAddresses[0].emailAddress
   );
 
-  // console.log("userCourses", userCourses);
   return (
     <div>
       <CourseList courses={userCourses} />
