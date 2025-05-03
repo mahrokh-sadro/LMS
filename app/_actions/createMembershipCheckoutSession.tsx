@@ -7,25 +7,25 @@ const stripe = new Stripe(
   }
 );
 
-export async function createMembershipCheckoutSession(email: string) {
+// Price IDs from Stripe dashboard
+const PRICES = {
+  month: "price_1RKVe4GfAmxmqqaW8q8Wgpp1",
+  year: "price_1RKVhWGfAmxmqqaWV6yP9ndw",
+};
+
+export async function createMembershipCheckoutSession(
+  email: string,
+  subscription: "month" | "year" = "month"
+) {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "subscription",
     line_items: [
       {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: "Membership",
-            description: "Access to all premium courses",
-          },
-          unit_amount: 2399,
-          recurring: { interval: "month" },
-        },
+        price: PRICES[subscription],
         quantity: 1,
       },
     ],
-
     customer_email: email,
     success_url: `http://localhost:3000/membership/success?email=${email}`,
     cancel_url: `http://localhost:3000/membership/canceled`,

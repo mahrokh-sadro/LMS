@@ -194,3 +194,27 @@ export const GetUserCourseList = async (email) => {
     return [];
   }
 };
+
+export const getUserMembership = async (userEmail) => {
+  const query = gql`
+    query GetMembership {
+    
+     userEnrollCourses(where: { userEmail: "${userEmail}" }) {
+        id
+        courseId
+        userEmail
+        membership
+        completedChapterId
+      }
+    }
+  `;
+
+  const result = await request(MASTER_URL, query);
+  const allEnrollments = result.userEnrollCourses;
+
+  const membershipEnrollment = allEnrollments.find(
+    (e) => e.membership === true
+  );
+
+  return membershipEnrollment;
+};
