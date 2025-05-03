@@ -53,17 +53,19 @@ const SideBarNav = () => {
             p: 2,
           }}
         >
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={60}
-            height={60}
-            style={{
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-            loading="lazy"
-          />
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={60}
+              height={60}
+              style={{
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
+              loading="lazy"
+            />
+          </Link>
         </Box>
 
         <List>

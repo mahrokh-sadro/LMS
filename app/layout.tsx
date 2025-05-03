@@ -33,22 +33,37 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
+      afterSignInUrl="/browse"
+      afterSignUpUrl="/browse"
+    >
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className="antialiased">
           <header className="w-full bg-gray-200 px-6 py-3 shadow-sm">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
-              <Link href="/browse">Browse Courses</Link>
+              <Link href="/browse" className="text-xl font-semibold">
+                Browse Courses
+              </Link>
+
               <div className="flex items-center gap-4 ml-auto">
                 <SignedOut>
-                  <SignInButton />
-                  <SignUpButton />
+                  <SignInButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                    Sign In
+                  </SignInButton>
+                  <SignUpButton className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+                    Sign Up
+                  </SignUpButton>
                 </SignedOut>
+
                 <SignedIn>
+                  {/* Show Dynamic Search Bar & User Button when signed in */}
                   <DynamicSearchBarWrapper />
-                  <UserButton afterSignOutUrl="/" />
+                  <UserButton
+                    afterSignOutUrl="/" // Redirect to home page after sign-out
+                    className="text-black"
+                  />
                 </SignedIn>
               </div>
             </div>
