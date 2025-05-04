@@ -50,12 +50,13 @@ export default async function RootLayout({
 
               <div className="flex items-center gap-4 ml-auto">
                 <SignedOut>
-                  <SignInButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                    Sign In
-                  </SignInButton>
-                  <SignUpButton className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                    Sign Up
-                  </SignUpButton>
+                  <div className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                    <SignInButton></SignInButton>
+                  </div>
+                  {/* </SignInButton> */}
+                  <div className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                    <SignUpButton>Sign Up</SignUpButton>
+                  </div>
                 </SignedOut>
 
                 <SignedIn>
