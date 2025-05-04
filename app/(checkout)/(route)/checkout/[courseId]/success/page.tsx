@@ -3,8 +3,8 @@ import SuccessRedirect from "./SuccessRedirect";
 import { currentUser } from "@clerk/nextjs/server";
 
 interface SuccessPageProps {
-  params: { courseId: string };
-  searchParams: { email?: string };
+  params: any;
+  searchParams: any;
 }
 
 const SuccessPage = async ({ params, searchParams }: SuccessPageProps) => {
