@@ -17,8 +17,8 @@ const UserButtonWrapper = () => {
   return (
     <div className="flex items-center justify-center">
       <UserButton
-        afterSignOutUrl="/"
-        className="px-6 py-3 bg-gray-700 text-white rounded-full hover:bg-gray-800 transition duration-200"
+      // afterSignOutUrl="/"
+      // className="px-6 py-3 bg-gray-700 text-white rounded-full hover:bg-gray-800 transition duration-200"
       />
     </div>
   );
