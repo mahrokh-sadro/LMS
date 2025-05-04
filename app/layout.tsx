@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import {
   ClerkProvider,
   SignInButton,
-  SignOutButton,
+  // SignOutButton,
   SignUpButton,
   SignedIn,
   SignedOut,
-  UserButton,
+  // UserButton,
 } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -59,7 +59,6 @@ export default async function RootLayout({
                 </SignedOut>
 
                 <SignedIn>
-                  {/* <DynamicSearchBarWrapper /> */}
                   <UserButtonWrapper />
                 </SignedIn>
               </div>

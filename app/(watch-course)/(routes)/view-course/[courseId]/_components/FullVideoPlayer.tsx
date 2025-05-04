@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-// import { markChapterCompleted } from "@/app/_services/index";
 
 interface FullVideoPlayerProps {
   course: any;

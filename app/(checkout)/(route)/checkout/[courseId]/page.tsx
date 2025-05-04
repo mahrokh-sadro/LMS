@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { getCourseById } from "@/app/_services/index"; // Adjust the import if necessary
+import { getCourseById } from "@/app/_services/index";
 import { createCheckoutSession } from "@/app/_actions/createCheckoutSession";
 import { useUser } from "@clerk/nextjs";
 import { useParams } from "next/navigation";
 
 const CheckoutPage = () => {
-  const { user } = useUser(); // Get the current user using Clerk
+  const { user } = useUser();
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 

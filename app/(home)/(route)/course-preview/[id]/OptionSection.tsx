@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaGithub, FaDesktop, FaYoutube } from "react-icons/fa"; // import icons
+import { FaGithub, FaDesktop, FaYoutube } from "react-icons/fa";
 
 const OptionSection: React.FC = () => {
   const options = [

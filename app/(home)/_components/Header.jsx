@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import SearchBar from "./SearchBar";
 import { AppBar, Toolbar, Typography, TextField } from "@mui/material";
 import { useUser } from "@clerk/nextjs";
 
@@ -18,7 +17,6 @@ const Header = () => {
       >
         <Typography variant="h6">My Application</Typography>
 
-        {/* Simple Search Bar */}
         <TextField
           variant="outlined"
           size="small"

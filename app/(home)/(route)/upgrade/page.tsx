@@ -53,26 +53,21 @@ const Page: React.FC = () => {
           You already have an active membership!
         </Typography>
       ) : (
-        <Grid
-          container
-          spacing={4} // Add spacing between grid items
-          justifyContent="center" // Center the items horizontally
-        >
-          {/* Monthly Plan Card */}
+        <Grid container spacing={4} justifyContent="center">
           <Grid
             item
             xs={12}
             sm={6}
             md={4}
             component="div"
-            sx={{ display: "flex", justifyContent: "center" }} // Optionally center the card
+            sx={{ display: "flex", justifyContent: "center" }}
           >
             <Card
               sx={{
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-                boxShadow: 3, // Optional: Add shadow for visual depth
+                boxShadow: 3,
               }}
             >
               <CardContent sx={{ flexGrow: 1 }}>
@@ -111,21 +106,20 @@ const Page: React.FC = () => {
             </Card>
           </Grid>
 
-          {/* Yearly Plan Card */}
           <Grid
             item
             xs={12}
             sm={6}
             md={4}
             component="div"
-            sx={{ display: "flex", justifyContent: "center" }} // Optionally center the card
+            sx={{ display: "flex", justifyContent: "center" }}
           >
             <Card
               sx={{
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-                boxShadow: 3, // Optional: Add shadow for visual depth
+                boxShadow: 3,
               }}
             >
               <CardContent sx={{ flexGrow: 1 }}>

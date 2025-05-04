@@ -173,11 +173,9 @@ export const GetUserCourseList = async (email) => {
       }
     `;
     const result = await request(MASTER_URL, query);
-    console.log("Result:", result);
     const courses = result.userEnrollCourses
       ?.flatMap((enroll) => enroll.courseList)
       .filter(Boolean);
-    console.log("Courses:", courses);
     return courses;
   } catch (error) {
     console.error("Error fetching user course list:", error);

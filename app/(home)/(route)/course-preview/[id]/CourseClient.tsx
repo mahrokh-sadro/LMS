@@ -10,16 +10,11 @@ interface CourseClientProps {
 }
 
 const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
-  const [isEnrolled, setIsEnrolled] = useState(false);
-
   const getYoutubeEmbedUrl = (url: string) => {
     const urlObj = new URL(url);
     const videoId = urlObj.searchParams.get("v");
     return `https://www.youtube.com/embed/${videoId}`;
   };
-
-  console.log("course", course);
-  console.log("enrollment", enrollment);
 
   return (
     <div className="p-6 max-w-7xl mx-auto">

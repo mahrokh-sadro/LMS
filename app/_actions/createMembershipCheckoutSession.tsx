@@ -1,17 +1,16 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(
-  "sk_test_51R2FT8GfAmxmqqaW6FfZCQQSjfoetCxvm8CYcYaMrOrstSS7W8FsMcCKacuuueaQmDRVcFiub0imePfb9IxZdjAJ00fUY6lyR3",
-  {
-    apiVersion: "2025-04-30.basil",
-  }
-);
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, {
+  apiVersion: "2025-04-30.basil",
+});
 
 // Price IDs from Stripe dashboard
 const PRICES = {
-  month: "price_1RKVe4GfAmxmqqaW8q8Wgpp1",
-  year: "price_1RKVhWGfAmxmqqaWV6yP9ndw",
+  month: process.env.NEXT_PUBLIC_MONTHLY_STRIPE_PRICE_ID!,
+  year: process.env.NEXT_PUBLIC_YEARLY_STRIPE_PRICE_ID!,
 };
+
+const origin = process.env.NEXT_PUBLIC_APP_URL;
 
 export async function createMembershipCheckoutSession(
   email: string,
@@ -27,8 +26,8 @@ export async function createMembershipCheckoutSession(
       },
     ],
     customer_email: email,
-    success_url: `http://localhost:3000/membership/success?email=${email}`,
-    cancel_url: `http://localhost:3000/membership/canceled`,
+    success_url: `${origin}/membership/success?email=${email}`,
+    cancel_url: `${origin}/membership/canceled`,
   });
 
   return session.url;

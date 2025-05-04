@@ -1,5 +1,3 @@
-// app/(home)/layout.tsx
-// "use cleint";
 import SideBarNav from "./../_components/SideBarNav";
 
 export default function HomeLayout({

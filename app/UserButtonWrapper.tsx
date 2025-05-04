@@ -1,5 +1,4 @@
 "use client";
-// app/UserButtonWrapper.tsx'
 
 import { useEffect, useState } from "react";
 import { UserButton } from "@clerk/nextjs";
@@ -7,13 +6,11 @@ import { UserButton } from "@clerk/nextjs";
 const UserButtonWrapper = () => {
   const [mounted, setMounted] = useState(false);
 
-  // Set mounted to true after the component has been mounted on the client
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    // Optionally, render nothing or a placeholder before mounting
     return null;
   }
 

@@ -18,9 +18,7 @@ const EmptyStateCard = ({ message = "No data found." }) => {
       <CardContent>
         <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
           <HourglassEmptyIcon fontSize="large" color="disabled" />
-          {/* <Typography variant="h6" color="textSecondary">
-            Nothing to show
-          </Typography> */}
+
           <Typography variant="body2" color="textSecondary">
             {message}
           </Typography>

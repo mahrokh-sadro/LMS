@@ -1,4 +1,3 @@
-// app/listings/[listingId]/page.tsx
 import { getCourseById } from "../../../../_services/index";
 import CourseClient from "./CourseClient";
 import { currentUser } from "@clerk/nextjs/server";

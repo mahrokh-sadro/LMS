@@ -1,7 +1,6 @@
 import React from "react";
 import { currentUser } from "@clerk/nextjs/server";
 import { GetUserCourseList } from "@/app/_services/index";
-// import DashboardClient from "./_components/DashboardClient";
 import CourseList from "../browse/_components/CourseList";
 import { redirect } from "next/navigation";
 import EmptyStateCard from "../../_components/EmptyStateCard";
@@ -16,7 +15,6 @@ const Dashboard = async () => {
     user?.emailAddresses[0].emailAddress
   );
 
-  console.log("course", userCourses);
   return (
     <div>
       {userCourses && userCourses.length > 0 ? (

@@ -1,11 +1,8 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(
-  "sk_test_51R2FT8GfAmxmqqaW6FfZCQQSjfoetCxvm8CYcYaMrOrstSS7W8FsMcCKacuuueaQmDRVcFiub0imePfb9IxZdjAJ00fUY6lyR3",
-  {
-    apiVersion: "2025-04-30.basil", // Use valid version
-  }
-);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2025-04-30.basil",
+});
 
 export async function createCheckoutSession(course: any, email: string) {
   const priceInCents =
@@ -16,6 +13,7 @@ export async function createCheckoutSession(course: any, email: string) {
   if (priceInCents === 0) {
     throw new Error("Invalid price provided");
   }
+  const origin = process.env.NEXT_PUBLIC_APP_URL;
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -34,9 +32,9 @@ export async function createCheckoutSession(course: any, email: string) {
       },
     ],
     customer_email: email,
-    success_url: `http://localhost:3000/checkout/${course.id}/success?email=${email}`,
-    cancel_url: `http://localhost:3000/course-preview/${course.id}?canceled=true`,
+    success_url: `${origin}/checkout/${course.id}/success?email=${email}`,
+    cancel_url: `${origin}/course-preview/${course.id}?canceled=true`,
   });
 
-  return session.url; // Return the session URL for redirection
+  return session.url;
 }

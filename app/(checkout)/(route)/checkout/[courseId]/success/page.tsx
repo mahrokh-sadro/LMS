@@ -1,5 +1,3 @@
-// app/(checkout)/(route)/checkout/[courseId]/success/page.tsx
-
 import { EnrollCourse, PublishCourse } from "@/app/_services/index";
 import SuccessRedirect from "./SuccessRedirect";
 import { currentUser } from "@clerk/nextjs/server";

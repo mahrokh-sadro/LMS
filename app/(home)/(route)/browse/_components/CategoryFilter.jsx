@@ -20,9 +20,6 @@ const CategoryFilter = ({ onFilterChange }) => {
 
   return (
     <div>
-      {/* <Typography variant="h6" sx={{ marginBottom: 2 }}>
-        Filter by Category
-      </Typography> */}
       <Stack direction="row" spacing={2} flexWrap="wrap">
         {categories.map((category) => (
           <Button
