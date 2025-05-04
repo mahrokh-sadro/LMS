@@ -20,6 +20,8 @@ const Browse = () => {
   const filteredCourses = filteredCategory
     ? courses.filter((course: any) => course?.category === filteredCategory)
     : courses;
+
+  console.log("filteredCourses", filteredCourses);
   return (
     <div>
       <CategoryFilter onFilterChange={setFilteredCategory} />

@@ -68,23 +68,16 @@ export const getCourseById = async (id, userEmail) => {
   `;
 
   const result = await request(MASTER_URL, query);
-  const allEnrollments = result.userEnrollCourses;
-
-  // 1. Check if user has a membership
-  const membershipEnrollment = allEnrollments.find(
-    (e) => e.membership === true
-  );
-
-  // 2. If not, fallback to specific course enrollment
-  const courseEnrollment = allEnrollments.find((e) => e.courseId === id);
 
   return {
     course: result.courseLists[0],
-    enrollment: membershipEnrollment || courseEnrollment || null,
+    enrollment: result.userEnrollCourses[0] || null,
   };
 };
 
 export const EnrollCourse = async (id, userEmail, membership = false) => {
+  if (!id) id = "";
+  console.log("ID", id);
   const mutationQuery =
     gql`
     mutation MyMutation {
@@ -185,9 +178,11 @@ export const GetUserCourseList = async (email) => {
       }
     `;
     const result = await request(MASTER_URL, query);
-    const courses = result.userEnrollCourses
-      ?.flatMap((enroll) => enroll.courseList)
-      .filter(Boolean);
+    console.log("Result:", result);
+    const courses = result.userEnrollCourses;
+    // ?.flatMap((enroll) => enroll.courseList)
+    // .filter(Boolean);
+    console.log("Courses:", courses);
     return courses;
   } catch (error) {
     console.error("Error fetching user course list:", error);

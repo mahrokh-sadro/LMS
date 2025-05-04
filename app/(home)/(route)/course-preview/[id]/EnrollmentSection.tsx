@@ -79,15 +79,14 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
         </button>
       )}
 
-      {isMember ||
-        (course.free && !enrollment?.courseId && (
-          <button
-            onClick={handleEnroll}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
-          >
-            Enroll Now
-          </button>
-        ))}
+      {isMember || (course.free && !enrollment?.courseId) ? (
+        <button
+          onClick={handleEnroll}
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+        >
+          Enroll Now
+        </button>
+      ) : null}
 
       {!isMember && !course.free && !enrollment?.courseId && (
         <button
