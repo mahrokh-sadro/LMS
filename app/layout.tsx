@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   ClerkProvider,
   SignInButton,
+  SignOutButton,
   SignUpButton,
   SignedIn,
   SignedOut,
@@ -10,6 +11,7 @@ import {
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import UserButtonWrapper from "./UserButtonWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,10 +60,7 @@ export default async function RootLayout({
 
                 <SignedIn>
                   {/* <DynamicSearchBarWrapper /> */}
-                  <UserButton
-                    afterSignOutUrl="/" // Redirect to home page after sign-out
-                    className="text-black"
-                  />
+                  <UserButtonWrapper />
                 </SignedIn>
               </div>
             </div>
