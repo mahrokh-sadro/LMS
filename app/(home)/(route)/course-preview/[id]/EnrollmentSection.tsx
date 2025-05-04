@@ -1,7 +1,11 @@
 "use client";
 
-import { EnrollCourse, PublishCourse } from "@/app/_services/index";
-import React from "react";
+import {
+  EnrollCourse,
+  getUserMembership,
+  PublishCourse,
+} from "@/app/_services/index";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { createMembershipCheckoutSession } from "@/app/_actions/createMembershipCheckoutSession";
@@ -17,7 +21,22 @@ const EnrollmentSection: React.FC<EnrollmentSectionProps> = ({
 }) => {
   const { user } = useUser();
   const router = useRouter();
-  const isMember = enrollment ? enrollment.membership : false;
+
+  const [isMember, setIsMember] = useState(false);
+
+  useEffect(() => {
+    const fetchMembership = async () => {
+      if (user) {
+        const membership = await getUserMembership(
+          user.emailAddresses[0].emailAddress
+        );
+        setIsMember(!!membership);
+      }
+    };
+
+    fetchMembership();
+  }, [user]);
+
   const handleEnroll = async () => {
     if (user) {
       try {

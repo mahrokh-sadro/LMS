@@ -57,7 +57,7 @@ export const getCourseById = async (id, userEmail) => {
         outcomes
         price
       }
-     userEnrollCourses(where: { userEmail: "${userEmail}" }) {
+      userEnrollCourses(where: { courseId: "${id}", userEmail: "${userEmail}" }) {
         id
         courseId
         userEmail
@@ -76,26 +76,21 @@ export const getCourseById = async (id, userEmail) => {
 };
 
 export const EnrollCourse = async (id, userEmail, membership = false) => {
-  if (!id) id = "";
-  console.log("ID", id);
-  const mutationQuery =
-    gql`
-    mutation MyMutation {
+  const hasCourseId = Boolean(id);
+
+  // Dynamically construct the mutation
+  const mutationQuery = gql`
+    mutation EnrollUser {
       createUserEnrollCourse(
-        data: { userEmail: "` +
-    userEmail +
-    `",
-                courseId: "` +
-    id +
-    `" ,
-                membership: ` +
-    membership +
-    `,
-                
-                }
-          ) {
-            id
-          }
+        data: {
+          userEmail: "${userEmail}"
+          ${hasCourseId ? `courseId: "${id}"` : ""}
+          membership: ${membership}
+          ${hasCourseId ? `courseList: { connect: { id: "${id}" } }` : ""}
+        }
+      ) {
+        id
+      }
     }
   `;
 
@@ -179,9 +174,9 @@ export const GetUserCourseList = async (email) => {
     `;
     const result = await request(MASTER_URL, query);
     console.log("Result:", result);
-    const courses = result.userEnrollCourses;
-    // ?.flatMap((enroll) => enroll.courseList)
-    // .filter(Boolean);
+    const courses = result.userEnrollCourses
+      ?.flatMap((enroll) => enroll.courseList)
+      .filter(Boolean);
     console.log("Courses:", courses);
     return courses;
   } catch (error) {
