@@ -54,12 +54,12 @@ const Page: React.FC = () => {
         </Typography>
       ) : (
         <Grid container spacing={4} justifyContent="center">
+          {/* Monthly Plan Grid Item */}
           <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            component="div"
+            // item
+            // xs={12}
+            // sm={6}
+            // md={4}
             sx={{ display: "flex", justifyContent: "center" }}
           >
             <Card
@@ -106,12 +106,12 @@ const Page: React.FC = () => {
             </Card>
           </Grid>
 
+          {/* Yearly Plan Grid Item */}
           <Grid
-            item
-            xs={12}
-            sm={6}
-            md={4}
-            component="div"
+            // item
+            // xs={12}
+            // sm={6}
+            // md={4}
             sx={{ display: "flex", justifyContent: "center" }}
           >
             <Card
