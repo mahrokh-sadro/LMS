@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { getCourseById } from "@/app/_services/index";
 import { createCheckoutSession } from "@/app/_actions/createCheckoutSession";
 import { useUser } from "@clerk/nextjs";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 
 const CheckoutPage = () => {
   const { user } = useUser();
