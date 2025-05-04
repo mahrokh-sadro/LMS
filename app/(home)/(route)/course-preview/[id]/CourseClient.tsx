@@ -51,7 +51,7 @@ const CourseClient: React.FC<CourseClientProps> = ({ course, enrollment }) => {
           <section>
             <h2 className="text-2xl font-semibold mb-4">What you'll learn</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {course?.outcomes.map((item, index) => (
+              {course?.outcomes.map((item: any, index: any) => (
                 <div
                   key={index}
                   className="flex items-start bg-gray-100 p-4 rounded-lg text-sm text-gray-800"
