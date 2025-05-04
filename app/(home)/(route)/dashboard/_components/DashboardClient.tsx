@@ -3,7 +3,16 @@ import React from "react";
 import Image from "next/image";
 import EmptyStateCard from "@/app/(home)/_components/EmptyStateCard";
 
-const DashboardClient = ({ courses }) => {
+interface Course {
+  id: string;
+  name: string;
+  description: string;
+  banner?: {
+    url: string;
+  };
+}
+
+const DashboardClient: React.FC<{ courses: Course[] }> = ({ courses }) => {
   return (
     <div>
       {Array.isArray(courses) && courses.length > 0 ? (
