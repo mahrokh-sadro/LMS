@@ -12,6 +12,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import UserButtonWrapper from "./UserButtonWrapper";
+import Header from "./Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,30 +43,7 @@ export default async function RootLayout({
     >
       <html lang="en">
         <body className="antialiased">
-          <header className="w-full bg-gray-200 px-6 py-3 shadow-sm">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
-              <Link href="/browse" className="text-xl font-semibold">
-                Browse Courses
-              </Link>
-
-              <div className="flex items-center gap-4 ml-auto">
-                <SignedOut>
-                  <div className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                    <SignInButton></SignInButton>
-                  </div>
-                  {/* </SignInButton> */}
-                  <div className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                    <SignUpButton>Sign Up</SignUpButton>
-                  </div>
-                </SignedOut>
-
-                <SignedIn>
-                  <UserButtonWrapper />
-                </SignedIn>
-              </div>
-            </div>
-          </header>
-
+          <Header />
           <main className="min-h-screen">{children}</main>
         </body>
       </html>
